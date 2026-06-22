@@ -1,11 +1,11 @@
 BootStrap: docker
-From: deeplabcut/deeplabcut:3.0.0-core-cuda12.4-cudnn9
+From: pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime
 
 %labels
         APPLICATION_NAME Deeplabcut in Apptainer with GUI 
         AUTHOR_NAME Joanes Grandjean
         YEAR 2026
-        Version 20260317
+        Version 20260622
 
 %help
         This container is based on DLC docker image, with added dependencies to make the GUI work
@@ -14,14 +14,40 @@ From: deeplabcut/deeplabcut:3.0.0-core-cuda12.4-cudnn9
         PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
         LANG=C.UTF-8 LC_ALL=C.UTF-8
         DLClight=False
+        QT_QPA_PLATFORM=xcb
 
 %post
+    set -ex
 
-        apt-get -yy update
+    apt-get update
+    apt-get install -y -V \
+        libglib2.0-0
 
-        apt-get install -yy --no-install-recommends curl libxcb-xinerama0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-shape0 libxkbcommon-x11-0
+    apt-get install -y -V \
+        build-essential \
+        mesa-utils \
+        git \
+        libxcb-xinerama0 \
+        libxcb-icccm4 \
+        libxcb-image0 \
+        libxcb-keysyms1 \
+        libxcb-randr0 \
+        libxcb-render-util0 \
+        libxcb-shape0 \
+        libxkbcommon-x11-0 \
+        libxcb-xinput0 \
+        libxcb-xfixes0 \
+        libxcb-cursor0 \
+        x11-utils \
+        libopengl0 \
+        libfontconfig1 \
+        libxrender1 \
+        libxi6 \
+        libglx-mesa0 \
+        libegl1 \
+        libdbus-1-3 
 
-
+ 
 # Install Deeplabcut gui
         python -m pip install deeplabcut[gui]
         
