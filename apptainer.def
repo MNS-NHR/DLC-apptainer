@@ -46,16 +46,9 @@ From: pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime
         libglx-mesa0 \
         libegl1 \
         libdbus-1-3 
-
  
 # Install Deeplabcut gui
-        python -m pip install deeplabcut[gui]
-        
-        #cd /opt/conda/lib/python3.11/site-packages/deeplabcut/pose_estimation_pytorch/models/backbones/pretrained_weights
-        #curl http://download.tensorflow.org/models/resnet_v1_50_2016_08_28.tar.gz | tar xvz --no-same-owner
-        #curl http://download.tensorflow.org/models/resnet_v1_101_2016_08_28.tar.gz | tar xvz --no-same-owner
-        #curl http://download.tensorflow.org/models/resnet_v1_152_2016_08_28.tar.gz | tar xvz --no-same-owner
-        #chmod -R 777 ./
+        python -m pip install "deeplabcut[gui] @ git+https://github.com/DeepLabCut/DeepLabCut.git@refs/pull/3380/head"
         
 # Cleanup
         apt-get -qq clean
