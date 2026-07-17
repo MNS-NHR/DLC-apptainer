@@ -48,7 +48,8 @@ From: pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime
         libdbus-1-3 
  
 # Install Deeplabcut gui
-        python -m pip install "deeplabcut[gui] @ git+https://github.com/DeepLabCut/DeepLabCut.git@refs/pull/3380/head"
+        python -m pip install "deeplabcut[gui,modelzoo] @ git+https://github.com/DeepLabCut/DeepLabCut.git@refs/pull/3380/head"
+        python -m pip install  "pyside6<6.3.2"
         
 # Cleanup
         apt-get -qq clean
